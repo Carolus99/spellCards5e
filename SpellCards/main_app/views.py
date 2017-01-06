@@ -1,6 +1,10 @@
 from django.shortcuts import render
 
 # Create your views here.
+def testindex(request):
+
+    return render(request, 'testindex.html', {'spells':spells})
+
 def index(request):
 
     return render(request, 'index.html', {'spells':spells})

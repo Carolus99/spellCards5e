@@ -13,14 +13,15 @@
       <a href="/">
          <img src ="{% static 'images/logo.png' %}" alt = "Spell Cards">
       </a> </nav>
+
 <main class = "container" role = "main">
   <div class = "spell panel panel-default">
-      {% for spell in spells %}
-    <div class = "panel-heading">
-        <h2 class = "panel-title">{{spell.name}}</h2>
-    </div>
-  
-      <div class = "panel-body">
+  {% for spell in spells %}
+  <div class = "panel-heading">
+    <h2 class = "panel-title"> {{spell.name}} </h2>
+  </div>
+
+  <div class = "panel-body">
         <table class="spell-table">
           <tr>
             <th>
@@ -53,12 +54,11 @@
               <p> {{spell.school}}</p>
             </td>
           </tr>
-
+</table>
       </div>
-      <br>
-      <br>
+
      {% endfor %}
-   </div>
+</div>
 
  </main>
   </body>
