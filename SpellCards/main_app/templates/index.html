@@ -1,0 +1,65 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel = "stylesheet" type ="text/css"
+      href = "{% static 'bootstrap.min.css' %}">
+    <link rel = "stylesheet" type ="text/css"
+      href = "{% static 'style.css' %}">
+    <title>Spell Cards</title>
+  </head>
+  <body>
+    <nav class = "navbar navbar-default navbar-static-top text-center">
+      <a href="/">
+         <img src ="{% static 'images/logo.png' %}" alt = "Spell Cards">
+      </a> </nav>
+<main class = "container" role = "main">
+  <div class = "spell panel panel-default">
+      {% for spell in spells %}
+    <div class = "panel-heading">
+        <h2 class = "panel-title">{{spell.name}}</h2>
+    </div>
+  
+      <div class = "panel-body">
+        <table class="spell-table">
+          <tr>
+            <th>
+              <img src={% static 'images/level-icon.png'%}>
+                Level: &nbsp;
+            </th>
+            <td>
+              {% if spell.level < 5 %}
+              <p> {{spell.level}}</p>
+              {% else %}
+              <p> This spell is too strong for you, traveler</p>
+              {% endif %}
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <img src ={% static 'images/distance-icon.png'%}>
+               Distance: &nbsp;
+            </th>
+            <td>
+              <p> {{spell.distance}}</p>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <img src ={% static 'images/school-icon.png'%}>
+              School: &nbsp;
+            </th>
+            <td>
+              <p> {{spell.school}}</p>
+            </td>
+          </tr>
+
+      </div>
+      <br>
+      <br>
+     {% endfor %}
+   </div>
+
+ </main>
+  </body>
+</html>
