@@ -13,8 +13,10 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
+from django.conf import settings
 from django.conf.urls import url
 from django.contrib import admin
+from django.views.static import serve
 from main_app import views
 
 urlpatterns = [
@@ -24,5 +26,15 @@ urlpatterns = [
 
     url(r'^testindex/', views.testindex),
 
-    url(r'^([0-9]+)/$', views.detail, name = 'detail')
+    url(r'^([0-9]+)/$', views.detail, name = 'detail'),
+
+    url(r'post_url/$', views.post_spell, name='post_spell')
+
 ]
+
+if settings.DEBUG:
+    urlpatterns += [
+        url(r'^media/(?P<path>.*)$', serve, {
+            'document_root': settings.MEDIA_ROOT,
+        }),
+    ]
