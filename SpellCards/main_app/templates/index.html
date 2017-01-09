@@ -14,52 +14,28 @@
          <img src ="{% static 'images/logo.png' %}" alt = "Spell Cards">
       </a> </nav>
 
-<main class = "container" role = "main">
-  <div class = "spell panel panel-default">
-  {% for spell in spells %}
-  <div class = "panel-heading">
-    <h2 class = "panel-title"> {{spell.name}} </h2>
-  </div>
+<main class = "container container--mw700" role = "main">
+  <div class="row">
+      {% for spell in spells %}
+       <div class = "col-md-4">
+         <a href="/{{spell.id}}/">
+          <div class = "spell panel panel-default">
+<!this is for displaying on the main page>
+           <div class = "panel-heading">
+            <h2 class = "panel-title"> {{spell.name}} </h2>
+           </div>
 
-  <div class = "panel-body">
-        <table class="spell-table">
-          <tr>
-            <th>
-              <img src={% static 'images/level-icon.png'%}>
-                Level: &nbsp;
-            </th>
-            <td>
-              {% if spell.level < 5 %}
-              <p> {{spell.level}}</p>
-              {% else %}
-              <p> This spell is too strong for you, traveler</p>
-              {% endif %}
-            </td>
-          </tr>
-          <tr>
-            <th>
-              <img src ={% static 'images/distance-icon.png'%}>
-               Distance: &nbsp;
-            </th>
-            <td>
-              <p> {{spell.distance}}</p>
-            </td>
-          </tr>
-          <tr>
-            <th>
-              <img src ={% static 'images/school-icon.png'%}>
-              School: &nbsp;
-            </th>
-            <td>
-              <p> {{spell.school}}</p>
-            </td>
-          </tr>
-</table>
+            <div class = "spell-photo">
+              <img src="{{spell.img_url}}" height ="100">
+            </div>
+          </div>
+        </a>
+        </div>
+        {% if forloop.counter|divisibleby:3 %}
+          </div><div class="row">
+        {% endif %}
+      {% endfor %}
       </div>
-
-     {% endfor %}
-</div>
-
  </main>
   </body>
 </html>

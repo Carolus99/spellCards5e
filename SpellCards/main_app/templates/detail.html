@@ -1,0 +1,58 @@
+{%load staticfiles%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset = "UTF-8">
+  <link rel = "stylesheet" type ="text/css"
+    href = "{% static 'bootstrap.min.css' %}">
+  <link rel = "stylesheet" type ="text/css"
+    href = "{% static 'style.css' %}">
+  <title></title>
+</head>
+<body>
+  <main class = "container container--mw700" role = "main">
+    <div class="row">
+
+            <div class = "spell panel panel-default">
+
+             <div class = "panel-heading">
+              <h2 class = "panel-title"> {{spell.name}} </h2>
+             </div>
+
+             <div class="panel-body">
+              <div class = "spell-photo">
+                <img src="{{spell.img_url}}" height ="100">
+              </div>
+              <table class="spell-table">
+                <tr>
+                  <th><p>
+                    <img src = "{% static 'images/distance-icon.png' %}">
+                  &nbsp   Distance:
+                  </p>
+                  </th>
+                  <td>&nbsp{{spell.distance}}</td>
+                </tr>
+                <tr>
+                  <th><p>
+                    <img src = "{% static 'images/level-icon.png' %}">
+                  &nbsp   Level:
+                  </p>
+                  </th>
+                  <td> &nbsp{{spell.level}}</td>
+                </tr>
+                <tr>
+                  <th><p>
+                    <img src = "{% static 'images/school-icon.png' %}">
+                  &nbsp   School:
+                  </p>
+                  </th>
+                  <td>&nbsp{{spell.school}}</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+
+   </main>
+</body>
+</html>

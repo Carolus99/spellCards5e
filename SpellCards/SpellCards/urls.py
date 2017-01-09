@@ -22,5 +22,7 @@ urlpatterns = [
 
     url(r'^index/', views.index),
 
-    url(r'^testindex/', views.testindex)
+    url(r'^testindex/', views.testindex),
+
+    url(r'^([0-9]+)/$', views.detail, name = 'detail')
 ]
