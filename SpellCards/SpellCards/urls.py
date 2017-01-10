@@ -22,13 +22,17 @@ from main_app import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
-    url(r'^index/', views.index),
-
-    url(r'^testindex/', views.testindex),
+    url(r'^index/', views.index, name='index'),
 
     url(r'^([0-9]+)/$', views.detail, name = 'detail'),
 
-    url(r'post_url/$', views.post_spell, name='post_spell')
+    url(r'^post_url$', views.post_spell),
+
+    url(r'^user/(\w+)/$', views.profile, name='profile'),
+
+    url(r'^login/$', views.login_view, name='Login'),
+
+    url(r'^logout/$', views.logout_view, name='Logout')
 
 ]
 

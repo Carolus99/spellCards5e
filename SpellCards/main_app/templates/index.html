@@ -10,9 +10,14 @@
 <!this is for displaying on the main page>
            <div class = "panel-heading">
             <h2 class = "panel-title"> {{spell.name}} </h2>
+            <a class="panel-username"
+              href="/user/{{spell.user.username}}">
+              by {{spell.user.username}}
+            </a>
            </div>
 
-            <div class = "spell-photo">
+            <div class = "panel-body">
+              <a href="/{{spell.id}}/">
               <img src="{{spell.image.url}}" height ="100">
             </div>
           </div>
