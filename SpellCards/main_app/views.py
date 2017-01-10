@@ -19,18 +19,12 @@ def detail(request, spell_id):
     return render(request, 'detail.html', {'spell':spell})
 
 def post_spell(request):
-      # if this is a POST request we need to process the form data
-    if request.method == 'POST':
-        # create a form instance and populate it with data from the request:
-        form = SpellForm(data = request.POST, files = request.FILES)
-        # check whether it's valid:
-        if form.is_valid():
-            # process the data in form.cleaned_data as required
-            spell = form.save(commit = False)
-            spell.user = request.user
-            treasure.save()
-        # redirect to a new URL:
-        return HttpResponseRedirect('/')
+    form = SpellForm(request.POST)
+    if form.is_valid():
+        spell = form.save(commit=False)
+        spell.user = request.user
+        spell.save()
+    return HttpResponseRedirect('http://127.0.0.1:8000/index/')
 
 def profile(request, username):
     user = User.objects.get(username=username)
