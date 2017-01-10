@@ -47,7 +47,7 @@ def login_view(request):
             if user is not None:
                 if user.is_active:
                     login(request,user)
-                    return HttpResponseRedirect('/')
+                    return HttpResponseRedirect('http://127.0.0.1:8000/index/')
                 else:
                     print("The account has been disabled!")
             else:
@@ -58,4 +58,4 @@ def login_view(request):
 
 def logout_view(request):
     logout(request)
-    return HttpResponseRedirect('/')
+    return HttpResponseRedirect('http://127.0.0.1:8000/index/')
