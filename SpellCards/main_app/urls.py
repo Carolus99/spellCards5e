@@ -30,6 +30,8 @@ urlpatterns = [
 
     url(r'^login/$', views.login_view, name='Login'),
 
+    url(r'^search/$', views.search, name='search'),
+
     url(r'^logout/$', views.logout_view, name='Logout')
 
 ]

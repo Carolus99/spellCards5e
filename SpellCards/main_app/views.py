@@ -60,3 +60,18 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect('http://127.0.0.1:8000/index/')
+
+def search(request):
+    search_val = request.GET.get('search', None)
+
+    if (search_val != None):
+        results = []
+        spells = Spell.objects.filter(name__icontains=search_val)
+        for spell in spells:
+            json = {}
+            json['name'] = spell.name
+            json['link'] = 'http://127.0.0.1:8000/index/' + str(spell.id) +'/'
+            results.append(json)
+        return JsonResponse({'results':results})
+    else:
+        return render(request, 'search.html')

@@ -10,18 +10,17 @@
     <title>Spell Cards</title>
   </head>
   <body>
-    <nav class = "navbar navbar-default navbar-static-top text-center">
-      <a href="http://127.0.0.1:8000/index/">
-         <img src ="{% static 'images/logo.png' %}" alt = "Spell Cards">
-      </a>
-      {% if user.is_authenticated %}
-        <a class="navbar-text navbar-right" href="{% url 'profile' user.username %}">{{ user.username }}</a>
-        <a class="navbar-text navbar-right" href="{% url 'Logout' %}">Logout</a>
-    {% else %}
-        <a class="navbar-text navbar-right" href="{% url 'Login' %}">Login</a>
-    {% endif %}
+    <nav class="navbar navbar-default navbar-static-top text-center" role="navigation">
+  <a href="http://127.0.0.1:8000/index/"><img src="{% static "images/logo.png" %}" height="200"  ></a>
+  {% if user.is_authenticated %}
+      <a class="navbar-text navbar-right" href="{% url 'profile' user.username %}">{{ user.username }}</a>
+      <a class="navbar-text navbar-right" href="{% url 'Logout' %}">Logout</a>
+      <a class="navbar-text navbar-right" href="{% url 'search' %}">Search</a>
 
-    </nav>
+  {% else %}
+      <a class="navbar-text navbar-right" href="{% url 'Login' %}"><h1>Login</h1></a>
+  {% endif %}
+</nav>
 
 <main class = "container container--mw700" role = "main">
 
@@ -29,6 +28,8 @@
 {% endblock %}
 
 </main>
-<footer>Here is a footer tag</footer>
+<footer class = "footer container text-center">© Spell Cards 2017</footer>
+<script src="{% static 'js/jquery-3.1.1.js' %}"></script>
+<script src="{% static 'js/main.js'%}"></script>
 </body>
 </html>
