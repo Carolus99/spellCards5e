@@ -1,12 +1,12 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.contrib.auth.models import User
-from .models import Spell
-from .forms import SpellForm, LoginForm
-from django.contrib.auth import authenticate, login,logout
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.forms import UserCreationForm
 from django.core.urlresolvers import reverse
 # Create your views here.
-
+from .models import Spell
+from .forms import SpellForm, LoginForm
 
 
 def index(request):
@@ -19,12 +19,19 @@ def detail(request, spell_id):
     return render(request, 'detail.html', {'spell':spell})
 
 def post_spell(request):
-    form = SpellForm(request.POST)
-    if form.is_valid():
-        spell = form.save(commit=False)
-        spell.user = request.user
-        spell.save()
-    return HttpResponseRedirect('http://127.0.0.1:8000/index/')
+    # if this is a POST request we need to process the form data
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        form = SpellForm(data = request.POST, files = request.FILES)
+        # check whether it's valid:
+        if form.is_valid():
+            # process the data in form.cleaned_data as required
+            spell = form.save(commit = False)
+            spell.user = request.user
+            spell.likes = 0
+            spell.save()
+        # redirect to a new URL:
+        return HttpResponseRedirect('http://127.0.0.1:8000/index/')
 
 def profile(request, username):
     user = User.objects.get(username=username)

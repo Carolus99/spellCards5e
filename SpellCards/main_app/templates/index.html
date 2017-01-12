@@ -28,16 +28,22 @@
         {% endif %}
       {% endfor %}
       </div>
-    <div class = "spell panel panel-default">
+
+      {% if user.is_authenticated %}
+    <div class="spell panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title">Add Spell</h3>
       </div>
       <div class="panel-body">
-      <form enctype="multipart/form-data" action="post_url/" method="POST">
-        {% csrf_token %}
-        {{form.as_p}}
-        <input type = "submit" value = "Submit"/>
-      </form>
+        <form enctype="multipart/form-data" action="/post_url/" method="post" >
+          {% csrf_token %}
+          <div class="field-wrapper">
+            {{form.as_p}}
+          </div>
+          <input type="submit" value="Submit" />
+        </form>
+      </div>
     </div>
-  </div>
-{%endblock%}
+    {% endif %}
+
+    {% endblock %}

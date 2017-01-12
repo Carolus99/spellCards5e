@@ -15,20 +15,18 @@ Including another URLconf
 """
 from django.conf import settings
 from django.conf.urls import url
-from django.contrib import admin
+
 from django.views.static import serve
 from main_app import views
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-
     url(r'^index/', views.index, name='index'),
+
+    url(r'^user/(\w+)/$', views.profile, name='profile'),
 
     url(r'^([0-9]+)/$', views.detail, name = 'detail'),
 
     url(r'post_url/$', views.post_spell, name='post_spell'),
-
-    url(r'^user/(\w+)/$', views.profile, name='profile'),
 
     url(r'^login/$', views.login_view, name='Login'),
 

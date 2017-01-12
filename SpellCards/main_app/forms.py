@@ -1,5 +1,6 @@
 from django import forms
-from.models import Spell
+from .models import Spell
+from django.contrib.admin import widgets
 
 class SpellForm(forms.ModelForm):
     class Meta:
